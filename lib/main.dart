@@ -1,96 +1,27 @@
 import 'package:flutter/material.dart';
+import 'appcomponent.dart';
+import 'package:sampleapp/Screens/Login/login_screen.dart';
 
-void main() => runApp(MaterialApp(
-      home: Home(),
-    ));
+void main() => runApp(MyApp());
 
-class Home extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('my first sample'),
-        centerTitle: true,
-        backgroundColor: Colors.red[600],
+    return MaterialApp(
+
+      /**
+       * to disable debug banner
+       */
+      debugShowCheckedModeBanner: false,
+
+      title: 'Finance House',
+      theme: ThemeData(
+        primaryColor: PrimaryColor,
+        scaffoldBackgroundColor: Colors.white,
       ),
-      body: Row(
-
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-
-            children: <Widget>[
-              Container(
-
-                color: Colors.cyan[200],
-                child : Text('hi')
-
-              ),
-              Container(
-
-                  color: Colors.red[200],
-                  child : Text('hi again')
-
-              ),
-              Container(
-
-                  color: Colors.pink[200],
-                  child : Text('hmmm')
-
-              ),
-
-            ],
-
-          ),
-
-
-
-          Text('Hello World'),
-          FlatButton(
-
-            onPressed: () {},
-            color: Colors.red[100],
-            child: Text('click me'),
-          ),
-          Container(
-          color: Colors.red,
-            padding: EdgeInsets.all(10.00),
-            child: Text('cick me'),
-
-          ),
-        ],
-
-//        child: Text('hello ninjas',
-//          style: TextStyle(
-//              fontSize: 20.0,
-//              fontWeight: FontWeight.bold,
-//              letterSpacing: 2.0,
-//              color: Colors.green[600]
-//          ),
-//        ),
-
-
-      ),
-      floatingActionButton : FloatingActionButton (
-        child:  Text('click'),
-      ),
+      home: LoginScreen(),
     );
   }
 }
-
-class statteFul extends StatefulWidget {
-  @override
-  _statteFulState createState() => _statteFulState();
-}
-
-class _statteFulState extends State<statteFul> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
