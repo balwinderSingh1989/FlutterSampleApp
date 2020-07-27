@@ -37,7 +37,7 @@ Widget subCard({String type, String amount, Color pinColor}) {
                   style: TextStyle(
                       color: Colors.blueGrey.shade700,
                       fontWeight: FontWeight.w800,
-                      fontSize: 20.0)),
+                      fontSize: 15.0)),
             ),
           ),
         ],

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sampleapp/Screens/CustomerDetail/cutomer_details.dart';
 import 'package:sampleapp/Screens/Home/model/customermodel.dart';
-import 'package:sampleapp/uicomponents/textstyles.dart';
 
 import 'customer_list_card.dart';
 
@@ -16,7 +14,16 @@ class CustomerList extends StatefulWidget {
         processing_fee: "1.30 %",
         tenure: "2 years",
         gradientcolor: gradientBankCard(Color.fromRGBO(160, 71, 45, 1.0),
-            Color.fromRGBO(221, 132, 58, 0.90))),
+            Color.fromRGBO(221, 132, 58, 0.90)),
+        customerSpentData: [
+          new CustomerSpentData('Utility', 35.8, Color(0xff3366cc)),
+          new CustomerSpentData('Telecom', 8.3, Color(0xff990099)),
+          new CustomerSpentData('LifeStyle', 10.8, Color(0xff109618)),
+          new CustomerSpentData('Work', 15.6, Color(0xfffdbe19)),
+          new CustomerSpentData('Loan Payments', 19.2, Color(0xffff9900)),
+          new CustomerSpentData('Credits', 10.3, Color(0xffdc3912)),
+        ]
+    ),
     Customer(
         id: "2",
         name: "Vicky",
@@ -26,7 +33,17 @@ class CustomerList extends StatefulWidget {
         processing_fee: "1.34 %",
         tenure: "2 years",
         gradientcolor: gradientBankCard(Color.fromRGBO(62, 130, 160, 1.0),
-            Color.fromRGBO(70, 174, 232, 0.80))),
+            Color.fromRGBO(70, 174, 232, 0.80)),
+        customerSpentData: [
+        new CustomerSpentData('Utility', 8.3, Color(0xff3366cc)),
+        new CustomerSpentData('Telecom', 35.8, Color(0xff990099)),
+        new CustomerSpentData('LifeStyle', 15.6, Color(0xff109618)),
+        new CustomerSpentData('Work', 10.8, Color(0xfffdbe19)),
+        new CustomerSpentData('Loan Payments', 10.3, Color(0xffff9900)),
+        new CustomerSpentData('Credits', 19.3, Color(0xffdc3912)),
+  ]
+
+    ),
     Customer(
         id: "3",
         name: "Christina",
@@ -36,7 +53,17 @@ class CustomerList extends StatefulWidget {
         processing_fee: "1.22 %",
         tenure: "2 years",
         gradientcolor: gradientBankCard(Color.fromRGBO(230, 79, 149, 1.0),
-            Color.fromRGBO(229, 79, 140, 0.80))),
+            Color.fromRGBO(229, 79, 140, 0.80)),
+       customerSpentData: [
+      new CustomerSpentData('Utility', 8.3, Color(0xff3366cc)),
+      new CustomerSpentData('Telecom', 35.8, Color(0xff990099)),
+      new CustomerSpentData('LifeStyle', 15.6, Color(0xff109618)),
+      new CustomerSpentData('Work', 10.8, Color(0xfffdbe19)),
+      new CustomerSpentData('Loan Payments', 10.3, Color(0xffff9900)),
+      new CustomerSpentData('Credits', 19.3, Color(0xffdc3912)),
+       ]
+
+    ),
     Customer(
         id: "2",
         name: "Nyra",
@@ -46,9 +73,19 @@ class CustomerList extends StatefulWidget {
         processing_fee: "1.22 %",
         tenure: "2 years",
         gradientcolor: gradientBankCard(Color.fromRGBO(130, 79, 149, 1.0),
-            Color.fromRGBO(229, 79, 140, 0.80))),
-  ];
+            Color.fromRGBO(229, 79, 140, 0.80)),
+        customerSpentData: [
+        new CustomerSpentData('Utility', 10.3, Color(0xff3366cc)),
+        new CustomerSpentData('Telecom', 15.8, Color(0xff990099)),
+        new CustomerSpentData('LifeStyle', 45.6, Color(0xff109618)),
+        new CustomerSpentData('Work', 10.8, Color(0xfffdbe19)),
+        new CustomerSpentData('Loan Payments', 30.3, Color(0xffff9900)),
+        new CustomerSpentData('Credits', 19.3, Color(0xffdc3912)),
+  ]
 
+
+    ),
+  ];
 
   static LinearGradient gradientBankCard(Color startColor, Color endColor) {
     return LinearGradient(
@@ -63,11 +100,9 @@ class CustomerList extends StatefulWidget {
 }
 
 class _CustomerListState extends State<CustomerList> {
-
   List<Customer> customerList;
-  List<Customer> items =  List<Customer>();
+  List<Customer> items = List<Customer>();
   TextEditingController editingController = TextEditingController();
-
 
   @override
   void initState() {
@@ -75,22 +110,18 @@ class _CustomerListState extends State<CustomerList> {
     super.initState();
     customerList = this.widget.customerList;
     items.addAll(customerList);
-
   }
-
-
 
   void filterSearchResults(String query) {
     List<Customer> dummySearchList = List<Customer>();
 
     dummySearchList.addAll(customerList);
 
-
-    if(query.isNotEmpty) {
+    if (query.isNotEmpty) {
       List<Customer> dummyListData = List<Customer>();
 
       dummySearchList.forEach((item) {
-        if(item.name.contains(query)  || item.loanAmount.contains(query)) {
+        if (item.name.contains(query) || item.loanAmount.contains(query)) {
           dummyListData.add(item);
         }
       });
@@ -110,42 +141,32 @@ class _CustomerListState extends State<CustomerList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-
-      child: Column(
-          children: <Widget>[
+        child: Column(children: <Widget>[
       Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        onChanged: (value) {
-          filterSearchResults(value);
-        },
-        controller: editingController,
-        decoration: InputDecoration(
-            labelText: "Search",
-            hintText: "Search",
-            prefixIcon: Icon(Icons.search),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          onChanged: (value) {
+            filterSearchResults(value);
+          },
+          controller: editingController,
+          decoration: InputDecoration(
+              labelText: "Search",
+              hintText: "Search",
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+        ),
       ),
-    ),
-
-    Expanded(
-    child : ListView.builder(
-    scrollDirection: Axis.vertical,
-    shrinkWrap: true,
-    itemCount: items.length,
-    itemBuilder: (BuildContext context, int index) {
-    return CustomerCard(customerList: items , index : index );
-    },
-    )
-    ,
-    ),
-    ])
-    );
-
+      Expanded(
+        child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            return CustomerCard(customerList: items, index: index);
+          },
+        ),
+      ),
+    ]));
   }
 }
-
-
-
-
